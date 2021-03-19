@@ -1,14 +1,10 @@
-
-
-// ingredients
-// getIngredients functions takes the ingredient input and adds to the list of ingredients the sends the concatinated string of ingredients to the api call recipuppy
 var ingredientBtn = document.querySelector("#ingredientButton");
 var ingredientList = document.getElementById("#ingredientList");
 var ingredientInput = document.querySelector("#ingredientInput");
 var ingredientString = "";
 var recipeBtn = document.querySelector("#recipeButton");
 
-// function getIngredients() {
+// function listens for ingredient submission and adds it to list
 ingredientBtn.addEventListener("click", function () {
   ingredientString += ingredientInput.value + ",";
   var listItem = document.createElement('li');
@@ -28,6 +24,4 @@ recipeBtn.addEventListener("click", function () {
 
   // remove all child nodes
   removeChildren(ingredientList);
-
-
 })
