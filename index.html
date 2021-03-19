@@ -6,12 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Provisions</title>
+    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link rel="stylesheet" href="./assets/css/skeleton.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
 
-
+    <!-- container for the ingredient selection -->
+    <div container id="ingredient">
+        <header>enter ingredients one at a time</header>
+        <label>Ingredients</label>
+        <input type="text" id="ingredientInput">
+        <input type="submit" value="add ingredient" id="ingredientButton">
+        <ul id=#ingredientList>
+            <!-- this is where the list of ingredients will be dynamically generated -->
+        </ul>
+        <input type="submit" value="get recipe" id="recipeButton">
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
