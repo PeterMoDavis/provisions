@@ -13,6 +13,8 @@
 
 <body>
 
+
+
     <!-- container for the ingredient selection -->
     <div container id="ingredient">
         <header>enter ingredients one at a time</header>
@@ -24,10 +26,17 @@
         </ul>
         <input type="submit" value="get recipe" id="recipeButton">
     </div>
+    <!-- end of ingredient container -->
+
+    <!-- youtube fireplace container -->
+    <div container id="youtubeContainer">
+        <!--youtube player button which then creates the iframe-->
+        <div id="player"></div>
+        <input type="button" value="light the fire" id="playerButton">
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./assets/js/index.js"></script>
 </body>
-
 </html>
