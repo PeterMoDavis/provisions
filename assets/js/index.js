@@ -9,7 +9,8 @@ var recipeBtn = document.querySelector("#recipeButton");
 var playerBtn = document.querySelector("#playerButton");
 const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
-var apiKey = peteKey;
+const peteKey2 = "50da326f05fc433585a10d5614cc25de";
+var apiKey = peteKey2;
 
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
@@ -55,12 +56,10 @@ function getEntrees() {
       return blob.json();
     })
     .then((response) => {
-
       // making variable for recipe array
       var recipes = response.results;
       //looping through recipe titles
       for (let i = 0; i < recipes.length; i++) {
-
         //create li
         var liElement = $(`<li>${recipes[i].title}</li>`);
 
@@ -69,18 +68,18 @@ function getEntrees() {
         //add even listeners to ul and lis
       }
       ulElement.on("click", liElement, function (e) {
-
         fetch(
-          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=e5c67ec0126745b8b0354ae98fcaed4d`
+          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=${apiKey}`
         )
           .then((blob) => {
             return blob.json();
           })
           .then((response) => {
+            console.log(response);
             var chosenRecipeId = response.results[0].id;
 
             fetch(
-              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=e5c67ec0126745b8b0354ae98fcaed4d`
+              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=${apiKey}`
             )
               .then((blob) => {
                 return blob.json();
@@ -97,7 +96,7 @@ function getEntrees() {
 
                 let h1Element = $(`<h1>${response.title}</h1>`);
                 let pElement = $(`<p>${response.instructions}</p>`);
-                let pElement2 = $(`<p>${response.pairedWines}</p>`);
+                let pElement2 = $(`<p>${response.winePairing.pairingText}</p>`);
                 $("#dynamic-recipe-container").append(
                   h1Element,
                   pElement,
@@ -110,7 +109,6 @@ function getEntrees() {
 
   //==========================================================
 }
-
 
 // eventListener listens for a click on the #playerBtn
 playerBtn.addEventListener("click", function () {
