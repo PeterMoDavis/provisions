@@ -1,7 +1,7 @@
 var ingredientBtn = document.querySelector("#ingredientButton");
 var ingredientList = document.getElementById("#ingredientList");
 var ingredientInput = document.querySelector("#ingredientInput");
-var ulElement;
+var ulElement = $("#recipeList");
 var ingredientString = "";
 var recipeBtn = document.querySelector("#recipeButton");
 var playerBtn = document.querySelector("#playerButton");
@@ -57,8 +57,6 @@ function getEntrees() {
       //looping through recipe titles
       for (let i = 0; i < recipes.length; i++) {
         console.log(recipes[i].title);
-        //select ul
-        var ulElement = $("#dynamic-ul");
         //create li
         var liElement = $(`<li>${recipes[i].title}</li>`);
         //append li to ul
