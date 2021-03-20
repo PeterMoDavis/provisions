@@ -5,8 +5,8 @@ var ulElement = $("#recipeList");
 var ingredientString = "";
 var recipeBtn = document.querySelector("#recipeButton");
 var playerBtn = document.querySelector("#playerButton");
-const jKey = "e5c67ec0126745b8b0354ae98fcaed4d"
-const peteKey = "9175773144fc417eb84578b92bed4dd9"
+const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
+const peteKey = "9175773144fc417eb84578b92bed4dd9";
 var apiKey = peteKey;
 
 // listens for submission on #ingredientBtn and adds it to list
@@ -59,6 +59,7 @@ function getEntrees() {
         console.log(recipes[i].title);
         //create li
         var liElement = $(`<li>${recipes[i].title}</li>`);
+        var ulElement = $("#dynamic-recipe-list");
         //append li to ul
         ulElement.append(liElement);
         //add even listeners to ul and lis

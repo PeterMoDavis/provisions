@@ -13,7 +13,10 @@
 </head>
 
 <body>
-
+    <!-- this is the container that houses the code -->
+    <div id="dynamic-recipe-container">
+        <ul id="dynamic-recipe-list"></ul>
+    </div>
 
     <header></header>
     <!-- container for the ingredient selection -->
@@ -26,10 +29,13 @@
             <header>enter ingredients one at a time</header>
             <input type="text" id="ingredientInput">
             <input type="submit" value="add ingredient" id="ingredientButton">
-            <ul id=#ingredientList>
+            <ul id="ingredientList dynamic-ingredient-list">
                 <!-- this is where the list of ingredients will be dynamically generated -->
             </ul>
             <input type="submit" value="get entree" id="recipeButton">
+        </div>
+        <div id="dynamic-recipe-container">
+            <ul id="dynamic-recipe-list"></ul>
         </div>
 
         <h3 style="text-align: center;">Entrée</h3>
