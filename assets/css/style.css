@@ -1,7 +1,10 @@
-.container{
-    background: #f6ecc2;
+.container {
+  background: #f6ecc2;
 }
 
+li {
+  transition: all 2s;
+}
 
 /* menu background color */
 /* #f6ecc2 */

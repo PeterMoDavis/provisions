@@ -40,13 +40,6 @@ recipeBtn.addEventListener("click", function () {
   // remove all child nodes
   removeChildren(ingredientList);
 });
-// end #recipeBtn eventListener
-
-//j's key e5c67ec0126745b8b0354ae98fcaed4d
-
-//pete's key 9175773144fc417eb84578b92bed4dd9
-
-// var ingredients = "tomatoes";
 
 function getEntrees() {
   fetch(
@@ -91,6 +84,7 @@ function getEntrees() {
                   let liElement = $(
                     `<li>${response.extendedIngredients[i].name}</li>`
                   );
+                  ulElement.off();
                   ulElement.append(liElement);
                 }
 
@@ -142,7 +136,6 @@ function onYouTubeIframeAPIReady() {
 }
 // end of onYouTubeIframeAPIReady function
 //=========================================
-//OMINOUS CODE!!!!!!!!!!!!!!!!!!!!
 //   "https://api.spoonacular.com/food/wine/pairing?food=clam+chowder&apiKey=dbe21eb86f054ecfbb133d89f134fb72"
 // )
 //   .then((blob) => {
