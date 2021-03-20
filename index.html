@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Provisions</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/normalize.css">
     <link rel="stylesheet" href="./assets/css/skeleton.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -13,27 +15,43 @@
 </head>
 
 <body>
+
+
     <!-- this is the container that houses the code -->
     <div id="dynamic-recipe-container">
         <ul id="dynamic-recipe-list"></ul>
     </div>
 
-    <header></header>
     <!-- container for the ingredient selection -->
+
+
     <div class="container" id="ingredient">
 
-        <h3 style="text-align: center;">Ingredients</h3>
-
+        <h3 style="text-align: center;">Add your ingredients</h3>
 
         <div class="row">
-            <header>enter ingredients one at a time</header>
-            <input type="text" id="ingredientInput">
-            <input type="submit" value="add ingredient" id="ingredientButton">
-            <ul id="dynamic-ingredient-list">
-                <!-- this is where the list of ingredients will be dynamically generated -->
-            </ul>
-            <input type="submit" value="get entree" id="recipeButton">
+            <div class="twelve columns" id="ingredients-input-jared">
+                <input type="text" id="ingredientInput">
+                <input type="submit" value="add" id="ingredientButton">
+            </div>
         </div>
+
+        <div class="row">
+            <div class="twelve columns" id="ingredients-list-jared">
+                <ul id="dynamic-ingredient-list">
+                    <!-- List of inputted ingredients generated dynamically here -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="twelve columns" id="get-entree-btn">
+                <input type="submit" value="get entree" id="recipeButton">
+            </div>
+        </div>
+
+
+
         <div id="dynamic-recipe-container">
             <ul id="dynamic-recipe-list"></ul>
         </div>
@@ -65,11 +83,11 @@
     </div>
 
     <!-- youtube fireplace container -->
-    <div container id="youtubeContainer">
-        <!--youtube player button which then creates the iframe-->
-        <div id="player"></div>
+    <!-- <div container id="youtubeContainer"> -->
+    <!--youtube player button which then creates the iframe-->
+    <!-- <div id="player"></div>
         <input type="button" value="light the fire" id="playerButton">
-    </div>
+    </div> -->
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
