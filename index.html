@@ -13,56 +13,63 @@
 </head>
 
 <body>
-    <header></header>
 
-    <div class="container">
-            
-            <h3 style="text-align: center;">Ingredients</h3>
+    <div id="dynamic-recipe-container">
+        <div id="recipe-container">
+            <ul id="dynamic-ul">
 
-        
-            <div class="ingredients-input-container row">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque deserunt repellendus, 
-                explicabo aut, qui eos tempora facilis quae fugit mollitia id provident iste veritatis voluptas doloremque. 
-                Molestiae, esse totam? Alias!
-            </div>
-
-            <h3 style="text-align: center;">Entrée</h3>
-
-            <div class="recipe-container row"> 
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque deserunt repellendus, 
-                explicabo aut, qui eos tempora facilis quae fugit mollitia id provident iste veritatis voluptas doloremque. 
-                Molestiae, esse totam? Alias!
-            </div>
-
-                <h3 style="text-align: center;">Wine Pairings</h3>
-
-            <div class="wine-list-container row">
-
-                <!-- First pairing -->
-                    <div class="six columns">
-                        <ul>Recipe Name Will Go Here</ul>
-                        <li id="pairing1-title1"></li>
-                        <li id="pairing1-title2"></li>
-                        <li id="pairing1-title3"></li>
-                    </div>
-                    <div class="six columns">
-                        <p id="pairing1-description"></p>
-                    </div>
-            </div>
+            </ul>
+        </div>
     </div>
 
-
-
+    <header></header>
     <!-- container for the ingredient selection -->
-    <div container id="ingredient">
-        <header>enter ingredients one at a time</header>
-        <label>Ingredients</label>
-        <input type="text" id="ingredientInput">
-        <input type="submit" value="add ingredient" id="ingredientButton">
-        <ul id=#ingredientList>
-            <!-- this is where the list of ingredients will be dynamically generated -->
-        </ul>
-        <input type="submit" value="get recipe" id="recipeButton">
+    <div class="container" id="ingredient">
+
+        <h3 style="text-align: center;">Ingredients</h3>
+
+
+        <div class="row" id="ingredients-input-container">
+            <header>enter ingredients one at a time</header>
+            <input type="text" id="ingredientInput">
+            <input type="submit" value="add ingredient" id="ingredientButton">
+            <ul id=#ingredientList>
+                <!-- this is where the list of ingredients will be dynamically generated -->
+            </ul>
+            <input type="submit" value="get entree" id="recipeButton">
+        </div>
+
+        <h3 style="text-align: center;">Entrée</h3>
+
+        <div class="recipe-container row">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque deserunt repellendus,
+            explicabo aut, qui eos tempora facilis quae fugit mollitia id provident iste veritatis voluptas doloremque.
+            Molestiae, esse totam? Alias!
+        </div>
+
+        <h3 style="text-align: center;">Wine Pairings</h3>
+
+        <div class="wine-list-container row">
+
+
+            <!-- First pairing -->
+            <div class="six columns">
+                <ul>Recipe Name Will Go Here</ul>
+                <li id="pairing1-title1"></li>
+                <li id="pairing1-title2"></li>
+                <li id="pairing1-title3"></li>
+            </div>
+            <div class="six columns">
+                <p id="pairing1-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- youtube fireplace container -->
+    <div container id="youtubeContainer">
+        <!--youtube player button which then creates the iframe-->
+        <div id="player"></div>
+        <input type="button" value="light the fire" id="playerButton">
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
