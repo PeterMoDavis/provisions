@@ -1,3 +1,35 @@
+var ingredientBtn = document.querySelector("#ingredientButton");
+var ingredientList = document.getElementById("#ingredientList");
+var ingredientInput = document.querySelector("#ingredientInput");
+var ingredientString = "";
+var recipeBtn = document.querySelector("#recipeButton");
+var playerBtn = document.querySelector("#playerButton");
+
+// listens for submission on #ingredientBtn and adds it to list
+ingredientBtn.addEventListener("click", function () {
+  ingredientString += ingredientInput.value + ",";
+  var listItem = document.createElement("li");
+  listItem.innerHTML = ingredientInput.value;
+  ingredientList.appendChild(listItem);
+  ingredientInput.value = "";
+  console.log(ingredientString);
+});
+// end #ingredientBtn eventListener
+
+// listens for click on #recipeBtn
+recipeBtn.addEventListener("click", function () {
+  // this removes all child elements from the ingredient list
+  const removeChildren = (parent) => {
+    while (parent.lastChild) {
+      parent.removeChild(parent.lastChild);
+    }
+  };
+  // end #recipeBtn listener
+
+  // remove all child nodes
+  removeChildren(ingredientList);
+});
+// end #recipeBtn eventListener
 
 //j's key e5c67ec0126745b8b0354ae98fcaed4d
 
@@ -5,38 +37,11 @@
 
 var ingredients = "tomatoes";
 
-
 fetch(
-
   `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredients}&apiKey=e5c67ec0126745b8b0354ae98fcaed4d`
 )
   .then((blob) => {
     return blob.json();
-
-  "https://api.spoonacular.com/food/wine/pairing?food=clam+chowder&apiKey=dbe21eb86f054ecfbb133d89f134fb72"
-)
-  .then((blob) => {
-    return blob.json();
-    console.log(blob);
-  })
-  .then((response) => {
-    console.log(response)
-
-    //Dynamically generating wine paring card
-    //Pairing 1
-    $("#pairing1-title1").html(response.pairedWines[0]);
-    $("#pairing1-title2").html(response.pairedWines[1]);
-    $("#pairing1-title3").html(response.pairedWines[2]);
-    $("#pairing1-description").html(response.pairingText);
-
-  });
-
-
-//fetching recipepuppy for meal ideas
-fetch("http://www.recipepuppy.com/api/?i=clams,milk")
-  .then((blob) => {
-    return blob.json();
-
   })
   .then((response) => {
     // console.log(response);
@@ -46,7 +51,7 @@ fetch("http://www.recipepuppy.com/api/?i=clams,milk")
     for (let i = 0; i < recipes.length; i++) {
       console.log(recipes[i].title);
       //select ul
-      var ulElement = $("ul");
+      var ulElement = $("#dynamic-ul");
       //create li
       var liElement = $(`<li>${recipes[i].title}</li>`);
       //append li to ul
@@ -83,64 +88,36 @@ fetch("http://www.recipepuppy.com/api/?i=clams,milk")
               let h1Element = $(`<h1>${response.title}</h1>`);
               let pElement = $(`<p>${response.instructions}</p>`);
               let pElement2 = $(`<p>${response.pairedWines}</p>`);
-              $("#recipe-container").append(h1Element, pElement, pElement2);
+              $("#dynamic-recipe-container").append(
+                h1Element,
+                pElement,
+                pElement2
+              );
             });
         });
     });
   });
 
-var ingredientBtn = document.querySelector("#ingredientButton");
-var ingredientList = document.getElementById("#ingredientList");
-var ingredientInput = document.querySelector("#ingredientInput");
-var ingredientString = "";
-var recipeBtn = document.querySelector("#recipeButton");
-var playerBtn = document.querySelector("#playerButton");
-
-// listens for submission on #ingredientBtn and adds it to list
-ingredientBtn.addEventListener("click", function () {
-  ingredientString += ingredientInput.value + ",";
-  var listItem = document.createElement('li');
-  listItem.innerHTML = ingredientInput.value;
-  ingredientList.appendChild(listItem);
-  ingredientInput.value = "";
-  console.log(ingredientString);
-})
-// end #ingredientBtn eventListener
-
-// listens for click on #recipeBtn
-recipeBtn.addEventListener("click", function () {
-  // this removes all child elements from the ingredient list
-  const removeChildren = (parent) => {
-    while (parent.lastChild) {
-      parent.removeChild(parent.lastChild);
-    }
-  };
-  // end #recipeBtn listener
-
-  // remove all child nodes
-  removeChildren(ingredientList);
-});
-// end #recipeBtn eventListener
+//==========================================================
 
 // eventListener listens for a click on the #playerBtn
 playerBtn.addEventListener("click", function () {
   // loads the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
+  var tag = document.createElement("script");
 
   tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
+  var firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-})
+});
 // end #playerBtn listener
 
 // This function creates an <iframe> (and YouTube player)
 var player;
 function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'H0B0Xg80RGw',
+  player = new YT.Player("player", {
+    height: "390",
+    width: "640",
+    videoId: "H0B0Xg80RGw",
     playerVars: {
       controls: 0,
       autoplay: 1,
@@ -154,3 +131,22 @@ function onYouTubeIframeAPIReady() {
   // end of player object
 }
 // end of onYouTubeIframeAPIReady function
+//=========================================
+//OMINOUS CODE!!!!!!!!!!!!!!!!!!!!
+//   "https://api.spoonacular.com/food/wine/pairing?food=clam+chowder&apiKey=dbe21eb86f054ecfbb133d89f134fb72"
+// )
+//   .then((blob) => {
+//     return blob.json();
+//     console.log(blob);
+//   })
+//   .then((response) => {
+//     console.log(response)
+
+//     //Dynamically generating wine paring card
+//     //Pairing 1
+//     $("#pairing1-title1").html(response.pairedWines[0]);
+//     $("#pairing1-title2").html(response.pairedWines[1]);
+//     $("#pairing1-title3").html(response.pairedWines[2]);
+//     $("#pairing1-description").html(response.pairingText);
+
+//   });
