@@ -1,7 +1,9 @@
 var ingredientBtn = document.querySelector("#ingredientButton");
-var ingredientList = document.getElementById("#ingredientList");
+var ingredientList = document.querySelector("#dynamic-ingredient-list");
+console.log(ingredientList);
 var ingredientInput = document.querySelector("#ingredientInput");
 var ulElement = $("#recipeList");
+console.log(ulElement);
 var ingredientString = "";
 var recipeBtn = document.querySelector("#recipeButton");
 var playerBtn = document.querySelector("#playerButton");
@@ -11,10 +13,12 @@ var apiKey = peteKey;
 
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
+  console.log("click");
   ingredientString += ingredientInput.value + ",";
   var listItem = document.createElement("li");
   listItem.innerHTML = ingredientInput.value;
-  ingredientList.appendChild(listItem);
+  console.log(ingredientList);
+  ingredientList.append(listItem);
   ingredientInput.value = "";
   console.log(ingredientString);
 });
@@ -51,21 +55,21 @@ function getEntrees() {
       return blob.json();
     })
     .then((response) => {
-      console.log(response);
+
       // making variable for recipe array
       var recipes = response.results;
       //looping through recipe titles
       for (let i = 0; i < recipes.length; i++) {
-        console.log(recipes[i].title);
+
         //create li
         var liElement = $(`<li>${recipes[i].title}</li>`);
-        var ulElement = $("#dynamic-recipe-list");
+
         //append li to ul
         ulElement.append(liElement);
         //add even listeners to ul and lis
       }
       ulElement.on("click", liElement, function (e) {
-        console.log(e.target.textContent);
+
         fetch(
           `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=e5c67ec0126745b8b0354ae98fcaed4d`
         )
@@ -74,7 +78,7 @@ function getEntrees() {
           })
           .then((response) => {
             var chosenRecipeId = response.results[0].id;
-            //   console.log(chosenRecipeId);
+
             fetch(
               `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=e5c67ec0126745b8b0354ae98fcaed4d`
             )
@@ -106,6 +110,8 @@ function getEntrees() {
 
   //==========================================================
 }
+
+
 // eventListener listens for a click on the #playerBtn
 playerBtn.addEventListener("click", function () {
   // loads the IFrame Player API code asynchronously.
