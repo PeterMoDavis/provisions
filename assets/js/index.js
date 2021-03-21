@@ -126,7 +126,16 @@ playerBtn.addEventListener("click", function () {
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   // Grabbing/adding darkMode class to body DOM element.
   $(bodyEl).addClass("darkMode");
+  if($(bodyEl).hasClass("lightMode") === true ){
+    $(bodyEl).removeClass("lightMode");
+    $(bodyEl).addClass("darkMode");
+  }
 });
+
+
+
+// // end #playerBtn listener
+
 
 
 // Lights Up Event Listner
@@ -135,10 +144,6 @@ lightsUpBtn.addEventListener("click", function () {
   $(bodyEl).addClass("lightMode");
 });
 
-
-
-
-// // end #playerBtn listener
 
 // This function creates an <iframe> (and YouTube player)
 var player;
