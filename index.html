@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Provisions</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/normalize.css">
     <link rel="stylesheet" href="./assets/css/skeleton.css">
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -13,38 +15,86 @@
 </head>
 
 <body>
+
+
     <!-- this is the container that houses the code -->
-    <div id="dynamic-recipe-container">
+    <!-- <div id="dynamic-recipe-container">
         <ul id="dynamic-recipe-list"></ul>
-    </div>
+    </div> -->
 
-    <header></header>
     <!-- container for the ingredient selection -->
-    <div class="container" id="ingredient">
+    <div class="break"></div>
 
-        <h3 style="text-align: center;">Ingredients</h3>
 
+
+    <div class="container" id="ingredient" id="container">
+
+        <div class="break"></div>
+
+        <div class="row" id="header">
+
+            <div class="twelve columns" id="title-card">
+                <h3 id="title">Provisions:</h3>
+                <h5 id="subTitle">for an evening at home</h5>
+                <!-- <div class="break"></div> -->
+
+                <p>Uninspired by your pantry, but desire an inspired evening? Enter ingredients on hand
+                    and <span style="font-style: italic;">Provisions</span>
+                    recommends entrée and wine pairings to enjoy while dining fireside
+                    in an imagined shmancy restaurant.</p>
+            </div>
+
+        </div>
+
+
+        <div class="break"></div>
+
+        <h3 style="text-align: center;">Add your ingredients</h3>
 
         <div class="row">
-            <header>enter ingredients one at a time</header>
-            <input type="text" id="ingredientInput">
-            <input type="submit" value="add ingredient" id="ingredientButton">
-            <ul id="dynamic-ingredient-list">
-                <!-- this is where the list of ingredients will be dynamically generated -->
-            </ul>
-            <input type="submit" value="get entree" id="recipeButton">
+
+            <div class="twelve columns" id="ingredients-input-jared">
+                <input type="text" id="ingredientInput">
+                <input type="submit" value="add" id="ingredientButton">
+            </div>
+
         </div>
-        <div id="dynamic-recipe-container">
-            <ul id="dynamic-recipe-list"></ul>
+
+        <div class="row">
+
+            <div class="twelve columns" id="ingredients-list-container-jared">
+                <ul id="dynamic-ingredient-list">
+                    <!-- List of inputted ingredients generated dynamically here -->
+                </ul>
+            </div>
+
         </div>
+
+        <div class="row">
+
+            <div class="twelve columns" id="get-entree-btn">
+                <input type="submit" value="get entree" id="recipeButton">
+            </div>
+
+        </div>
+
+        <div class="break"></div>
 
         <h3 style="text-align: center;">Entrée</h3>
 
         <div class="recipe-container row">
-            <ul id=recipeList>
 
-            </ul>
+            <div class="four columns" id="recipe-list-container-jared">
+                <ul id=recipeList></ul>
+            </div>
+
+            <div class="eight columns" id="dynamic-recipe-container">
+                <ul id="dynamic-recipe-list"></ul>
+            </div>
+
         </div>
+
+        <div class="break"></div>
 
         <h3 style="text-align: center;">Wine Pairings</h3>
 
@@ -53,23 +103,41 @@
 
             <!-- First pairing -->
             <div class="six columns">
-                <ul>Recipe Name Will Go Here</ul>
-                <li id="pairing1-title1"></li>
-                <li id="pairing1-title2"></li>
-                <li id="pairing1-title3"></li>
+                <ul class="pairings"></ul>
             </div>
             <div class="six columns">
                 <p id="pairing1-description"></p>
             </div>
         </div>
+
+        <div class="break"></div>
+
     </div>
 
-    <!-- youtube fireplace container -->
-    <div container id="youtubeContainer">
-        <!--youtube player button which then creates the iframe-->
-        <div id="player"></div>
-        <input type="button" value="light the fire" id="playerButton">
+    <div class="break"></div>
+
+    <div class="row">
+        <!-- youtube fireplace container -->
+        <div container class="twelve columns" id="youtubeContainer">
+            <div id="player"></div>
+        </div>
+
     </div>
+
+    <div class="row">
+        <div container class="twelve columns" id="videoContainer">
+            <input type="button" value="light the fire" id="playerButton">
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
