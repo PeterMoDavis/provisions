@@ -1,22 +1,23 @@
 var ingredientBtn = document.querySelector("#ingredientButton");
 var ingredientList = document.querySelector("#dynamic-ingredient-list");
 var ingredientInput = document.querySelector("#ingredientInput");
+var winePair = document.querySelector("#winePair");
+winePair.innerHTML = "";
 var ulElement = $("#recipeList");
 var ingredientString = "";
 var recipeBtn = document.querySelector("#recipeButton");
 var playerBtn = document.querySelector("#playerButton");
+var bodyEl = document.querySelector(".body");
+var lightsUpBtn = document.querySelector("#lightsUpBtn");
 var wineIngredients = [];
 var aisleIngredients = [];
-const jKey3 = "b2556cac659e4b34af79c4e6807910d3"
 const jKey2 = "687fd01456924118932a158740718f76";
 const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
-var apiKey = jKey3;
-var winePair = document.querySelector("#winePair");
-winePair.innerHTML = "";
-var checkCondition = true;
+var apiKey = jKey;
 
+//checkCuisine first searches for the cuisine wine pairing and if it doesnt work it call the checkMeat function
 function checkCuisine(foodObject) {
     // if it is undefined it first tries to search for a cuisine based wine pairing 
     console.log("first check (cuisine) decided it was undefined " + winePair.innerHTML);
@@ -80,6 +81,9 @@ function checkMeat () {
 
  }
 
+
+
+
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
   ingredientString += ingredientInput.value + ",";
@@ -92,6 +96,7 @@ ingredientBtn.addEventListener("click", function () {
 
 // listens for click on #recipeBtn
 recipeBtn.addEventListener("click", function () {
+  console.log(ingredientString);
   // calls the getEntrees function to search for recipes
   getEntrees();
   // this removes all child elements from the ingredient list
@@ -104,6 +109,8 @@ recipeBtn.addEventListener("click", function () {
 
   // remove all child nodes
   removeChildren(ingredientList);
+  //clear ingredient string
+  ingredientString = "";
 });
 
 //Currently Jared's api key is in url. Jared did not make it into a variable
@@ -118,7 +125,10 @@ function getEntrees() {
 
       // making variable for recipe array
       var recipes = response.results;
-
+    
+      //emptying containers
+      ulElement.empty();
+      $("#dynamic-recipe-container").empty();
 
       //looping through recipe titles
       for (let i = 0; i < recipes.length; i++) {
@@ -155,7 +165,9 @@ function getEntrees() {
                   let liElement = $(
                     `<li>${wineIngredients[i].name}</li>`
                   );
+                  //turning off event listener
                   ulElement.off();
+
                   ulElement.append(liElement);
                 }
 
@@ -171,15 +183,13 @@ function getEntrees() {
 
 
 
-                // let pElement2 = $(`<p>${winePair}</p>`);
+
                 let h3Element = $(`<h3>${response.title}</h3>`);
                 let pElement = $(`<p>${response.instructions}</p>`);
-
 
                 $("#dynamic-recipe-container").append(
                   h3Element,
                   pElement,
-                  // pElement2
                 );
 
 
@@ -193,39 +203,6 @@ function getEntrees() {
 
 
 
-                // if (!response.winePairing.pairingText) {
-                //   console.log("typeof pElement2.innerHTML == 'undefined'")
-                //   if (response.cuisines.length > 0) {
-                //     console.log("cuisine = " + cuisine);
-                //     fetch(
-                //       `https://api.spoonacular.com/food/wine/pairing?food=${cuisine}&apiKey=${apiKey}`
-                //     )
-                //       .then((blob) => {
-                //         return blob.json();
-                //       })
-                //       .then((response) => {
-                //         console.log(response.message);
-                //         pElement2 = $(`<p>${response.message}</p>`)
-                //       })
-                //   } else if (response.dishTypes.length > 0) {
-                //     console.log("dish type = " + dishType);
-                //     fetch(
-                //       `https://api.spoonacular.com/food/wine/pairing?food=${dishType}&apiKey=${apiKey}`
-                //     )
-                //       .then((blob) => {
-                //         return blob.json();
-                //       })
-                //       .then((response) => {
-                //         console.log(response);
-                //         pElement2 = $(`<p>${response.message}</p>`)
-                //       })
-                //   } else {
-                //     console.log("using canned message")
-                //     pElement2 = $(`<p>${winePair}</p>`);
-
-                //   }
-                // }
-                //  end of if statement
 
 
 
@@ -246,8 +223,26 @@ playerBtn.addEventListener("click", function () {
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  // Grabbing/adding darkMode class to body DOM element.
+  $(bodyEl).addClass("darkMode");
+  if($(bodyEl).hasClass("lightMode") === true ){
+    $(bodyEl).removeClass("lightMode");
+    $(bodyEl).addClass("darkMode");
+  }
 });
+
+
+
 // // end #playerBtn listener
+
+
+
+// Lights Up Event Listner
+lightsUpBtn.addEventListener("click", function () {
+  // Grabbing/adding darkMode class to body DOM element.
+  $(bodyEl).addClass("lightMode");
+});
+
 
 // This function creates an <iframe> (and YouTube player)
 var player;
@@ -270,4 +265,3 @@ function onYouTubeIframeAPIReady() {
   // end of player object
 }
 // end of onYouTubeIframeAPIReady function;
-
