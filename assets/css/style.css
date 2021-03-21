@@ -1,5 +1,11 @@
 .darkMode{
   background-color: #060200;
+  transition: all 2s;
+}
+
+.lightMode{
+  background-color: white;
+  transition: all 2s;
 }
 
 .container {
@@ -92,6 +98,13 @@ input{
 }
 
 #videoContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#lightsUp{
   display: flex;
   justify-content: center;
   align-items: center;
