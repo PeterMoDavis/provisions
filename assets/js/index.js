@@ -58,7 +58,24 @@ function checkMeat(food) {
   var aisle = food;
   console.log(aisle);
   console.log(aisleIngredients);
-  if (aisleIngredients.indexOf("Frozen;Meat") >= 0) {
+  if (aisleIngredients.indexOf("Seafood") >= 0) {
+    var searchTerm = wineIngredients[aisleIngredients.indexOf("Seafood")].nameClean;
+    console.log(searchTerm);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
+
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+          winePair.innerHTML = response.pairingText;
+        } else {
+          lastWine();
+        }
+      })
+  } else if (aisleIngredients.indexOf("Frozen;Meat") >= 0) {
     var searchTerm = wineIngredients[aisleIngredients.indexOf("Frozen;Meat")].nameClean;
     console.log(searchTerm);
     fetch(
@@ -92,24 +109,7 @@ function checkMeat(food) {
           lastWine();
         }
       })
-  } else if (aisleIngredients.indexOf("Seafood") >= 0) {
-    var searchTerm = wineIngredients[aisleIngredients.indexOf("Seafood")].nameClean;
-    console.log(searchTerm);
-    fetch(
-      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
-    )
-      .then((blob) => {
-        return blob.json();
-      })
-      .then((response) => {
-
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
-          winePair.innerHTML = response.pairingText;
-        } else {
-          lastWine();
-        }
-      })
-    } else if (aisleIngredients.indexOf("Pasta and Rice") >= 0) {
+  } else if (aisleIngredients.indexOf("Pasta and Rice") >= 0) {
     var searchTerm = wineIngredients[aisleIngredients.indexOf("Pasta and Rice")].nameClean;
     console.log(searchTerm);
     fetch(
@@ -177,10 +177,10 @@ function checkMeat(food) {
           lastWine();
         }
       })
-  }else {
-    lastWine ();
+  } else {
+    lastWine();
   }
-  
+
 }
 // end of checkMeat
 
