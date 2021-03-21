@@ -31,7 +31,7 @@ recipeBtn.addEventListener("click", function () {
   console.log(ingredientString);
   //==========================LOCAL STORAGE=====================
   let ingredientsArray = JSON.parse(localStorage.getItem("ingredients")) || [];
-  ingredientsArray.push(ingredientString);
+  ingredientsArray.unshift(ingredientString);
   $("#dynamic-ingredient-list").prepend(
     ingredientsArray[ingredientsArray.length - 1]
   );
@@ -163,9 +163,13 @@ function onYouTubeIframeAPIReady() {
 
 function localStorageDisplay() {
   if (localStorage.ingredients) {
+    //get ingredients from storage
     let ingredientsArray = JSON.parse(localStorage.getItem("ingredients"));
-    ingredientsArray.splice(5);
+    //cut ingredients array down to 5
+    ingredientsArray.splice(6);
+    //loop through ingredients array
     for (let i = 0; i < ingredientsArray.length; i++) {
+      //append to list container replacing the commas for & slicing off the end commas and adding the illustrious wine emoji.
       $("#dynamic-ingredient-list").append(
         `<li>${ingredientsArray[i].replace(",", " & ").slice(0, -1)} 🍷</li>`
       );
