@@ -20,6 +20,7 @@ ingredientBtn.addEventListener("click", function () {
   var listItem = document.createElement("li");
   listItem.innerHTML = ingredientInput.value;
   console.log(ingredientList);
+  //changed the append to prepend
   ingredientList.prepend(listItem);
   ingredientInput.value = "";
   console.log(ingredientString);
@@ -31,7 +32,9 @@ recipeBtn.addEventListener("click", function () {
   console.log(ingredientString);
   //==========================LOCAL STORAGE=====================
   let ingredientsArray = JSON.parse(localStorage.getItem("ingredients")) || [];
+  //add element to the top of the array
   ingredientsArray.unshift(ingredientString);
+  //prepend to the ingredients list
   $("#dynamic-ingredient-list").prepend(
     ingredientsArray[ingredientsArray.length - 1]
   );
