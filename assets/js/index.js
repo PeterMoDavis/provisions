@@ -27,6 +27,7 @@ ingredientBtn.addEventListener("click", function () {
 
 // listens for click on #recipeBtn
 recipeBtn.addEventListener("click", function () {
+  console.log(ingredientString);
   // calls the getEntrees function to search for recipes
   getEntrees();
   // this removes all child elements from the ingredient list
@@ -39,6 +40,8 @@ recipeBtn.addEventListener("click", function () {
 
   // remove all child nodes
   removeChildren(ingredientList);
+  //clear ingredient string
+  ingredientString = "";
 });
 
 //Currently Jared's api key is in url. Jared did not make it into a variable
