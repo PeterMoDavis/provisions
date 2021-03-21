@@ -1,27 +1,28 @@
 var ingredientBtn = document.querySelector("#ingredientButton");
 var ingredientList = document.querySelector("#dynamic-ingredient-list");
-console.log(ingredientList);
 var ingredientInput = document.querySelector("#ingredientInput");
 var ulElement = $("#recipeList");
-console.log(ulElement);
+var jrecipecontainer = $("#dynamic-recipe-container");
+var pElement2
+var primeIngedient="";
 var ingredientString = "";
 var recipeBtn = document.querySelector("#recipeButton");
 var playerBtn = document.querySelector("#playerButton");
 const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
+const jKey2 = "e95867d9d064452391efdf410e324e85 "
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
-var apiKey = peteKey2;
+const jaredKey = "dbe21eb86f054ecfbb133d89f134fb72"
+var apiKey = jKey2;
+var winePair = "You stumped our sommelier and we could not pair this dish with a wine. Please try again."
 
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
-  console.log("click");
   ingredientString += ingredientInput.value + ",";
   var listItem = document.createElement("li");
   listItem.innerHTML = ingredientInput.value;
-  console.log(ingredientList);
   ingredientList.append(listItem);
   ingredientInput.value = "";
-  console.log(ingredientString);
 });
 // end #ingredientBtn eventListener
 
@@ -75,7 +76,7 @@ function getEntrees() {
             return blob.json();
           })
           .then((response) => {
-            console.log(response);
+
             var chosenRecipeId = response.results[0].id;
 
             fetch(
@@ -94,14 +95,60 @@ function getEntrees() {
                   ulElement.append(liElement);
                 }
 
+                primeIngedient = response.extendedIngredients[0].name
+                let cuisine = response.cuisines[0];
+                let dishType = response.dishTypes[0];
                 let h1Element = $(`<h1>${response.title}</h1>`);
                 let pElement = $(`<p>${response.instructions}</p>`);
                 let pElement2 = $(`<p>${response.winePairing.pairingText}</p>`);
+
+
+                // this will check for wine pairings first for spoontify's built in wine pairing then by cuisine
+                // if (typeof pElement2.innerHTML == "undefined") {
+                if (!response.winePairing.pairingText) {
+                  console.log("typeof pElement2.innerHTML == 'undefined'")
+                  if (response.cuisines.length > 0) {
+                    console.log("cuisine = " + cuisine);
+                    fetch(
+                      `https://api.spoonacular.com/food/wine/pairing?food=${cuisine}&apiKey=${apiKey}`
+                    )
+                      .then((blob) => {
+                        return blob.json();
+                      })
+                      .then((response) => {
+                        console.log(response.message);
+                        pElement2 = $(`<p>${response.message}</p>`)
+                      })
+                  } else if (response.dishTypes.length > 0) {
+                    console.log("dish type = " + dishType);
+                    fetch(
+                      `https://api.spoonacular.com/food/wine/pairing?food=${dishType}&apiKey=${apiKey}`
+                    )
+                      .then((blob) => {
+                        return blob.json();
+                      })
+                      .then((response) => {
+                        console.log(response);
+                        pElement2 = $(`<p>${response.message}</p>`)
+                      })                   
+                  } else {
+                    console.log("using canned message")
+                    pElement2 = $(`<p>${winePair}</p>`);
+
+                  }
+                }
+                //  end of if statement
+
+
                 $("#dynamic-recipe-container").append(
                   h1Element,
                   pElement,
                   pElement2
                 );
+
+
+
+
               });
           });
       });
@@ -160,3 +207,31 @@ function onYouTubeIframeAPIReady() {
 //     $("#pairing1-description").html(response.pairingText);
 
 //   });
+
+
+// function getWine(foodObject) {
+//   var food = foodObject;
+
+//   if (food.winePairing.pairingText !== "undefined") {
+//     winePair = food.winePairing;
+//     console.log("this is original object" +winePair);
+//   } else {
+
+
+//     if (food.cuisine[0] !== "undefined") {
+//       fetch(
+//         `https://api.spoonacular.com/food/wine/pairing?food=${food.cuisine[0]}`
+//       )
+//         .then((blob) => {
+//           return blob.json();
+//         })
+//         .then((response) => {
+//           winePair = response;
+//           console.log("cuisine pair"+winePair);
+//         })
+
+//     }
+
+
+//   }
+// }
