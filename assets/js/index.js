@@ -1,6 +1,7 @@
 var ingredientBtn = document.querySelector("#ingredientButton");
 var ingredientList = document.querySelector("#dynamic-ingredient-list");
 var ingredientInput = document.querySelector("#ingredientInput");
+var bodyEl = document.querySelector(".body");
 var winePair = document.querySelector("#winePair");
 winePair.innerHTML = "";
 var ulElement = $("#recipeList");
@@ -15,7 +16,9 @@ const jKey2 = "687fd01456924118932a158740718f76";
 const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
-var apiKey = jKey;
+
+var apiKey = peteKey;
+
 
 //checkCuisine first searches for the cuisine wine pairing and if it doesnt work it call the checkMeat function
 function checkCuisine(foodObject) {
@@ -82,14 +85,15 @@ function checkMeat () {
  }
 
 
-
-
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
   ingredientString += ingredientInput.value + ",";
   var listItem = document.createElement("li");
   listItem.innerHTML = ingredientInput.value;
-  ingredientList.append(listItem);
+
+  console.log(ingredientList);
+  //changed the append to prepend
+  ingredientList.prepend(listItem);
   ingredientInput.value = "";
 });
 // end #ingredientBtn eventListener
@@ -97,6 +101,16 @@ ingredientBtn.addEventListener("click", function () {
 // listens for click on #recipeBtn
 recipeBtn.addEventListener("click", function () {
   console.log(ingredientString);
+  //==========================LOCAL STORAGE=====================
+  let ingredientsArray = JSON.parse(localStorage.getItem("ingredients")) || [];
+  //add element to the top of the array
+  ingredientsArray.unshift(ingredientString);
+  //prepend to the ingredients list
+  $("#dynamic-ingredient-list").prepend(
+    ingredientsArray[ingredientsArray.length - 1]
+  );
+  localStorage.setItem("ingredients", JSON.stringify(ingredientsArray));
+  //==========================LOCAL STORAGE=====================
   // calls the getEntrees function to search for recipes
   getEntrees();
   // this removes all child elements from the ingredient list
@@ -231,8 +245,6 @@ playerBtn.addEventListener("click", function () {
   }
 });
 
-
-
 // // end #playerBtn listener
 
 
@@ -265,3 +277,23 @@ function onYouTubeIframeAPIReady() {
   // end of player object
 }
 // end of onYouTubeIframeAPIReady function;
+
+//display local storage function
+
+function localStorageDisplay() {
+  if (localStorage.ingredients) {
+    //get ingredients from storage
+    let ingredientsArray = JSON.parse(localStorage.getItem("ingredients"));
+    //cut ingredients array down to 5
+    ingredientsArray.splice(6);
+    //loop through ingredients array
+    for (let i = 0; i < ingredientsArray.length; i++) {
+      //append to list container replacing the commas for & slicing off the end commas and adding the illustrious wine emoji.
+      $("#dynamic-ingredient-list").append(
+        `<li>${ingredientsArray[i].replace(",", " & ").slice(0, -1)} 🍷</li>`
+      );
+    }
+  }
+}
+
+localStorageDisplay();
