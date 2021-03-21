@@ -33,8 +33,7 @@ function checkCuisine(foodObject) {
       })
       .then((response) => {
         console.log("heres the response from the cuisine search " + response.pairingText);
-        if (typeof response.pairingText != "undefined") {
-          console.log("the response was considered not undefined")
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
           winePair.innerHTML = response.pairingText;
         }
         else {
@@ -68,7 +67,7 @@ function checkMeat(food) {
       })
       .then((response) => {
 
-        if (typeof response.pairingText != "undefined") {
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
@@ -85,13 +84,30 @@ function checkMeat(food) {
       })
       .then((response) => {
 
-        if (typeof response.pairingText != "undefined") {
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
         }
       })
-  } else if (aisleIngredients.indexOf("Pasta and Rice") >= 0) {
+  } else if (aisleIngredients.indexOf("Seafood") >= 0) {
+    var searchTerm = wineIngredients[aisleIngredients.indexOf("Seafood")].nameClean;
+    console.log(searchTerm);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
+
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+          winePair.innerHTML = response.pairingText;
+        } else {
+          lastWine();
+        }
+      })
+    } else if (aisleIngredients.indexOf("Pasta and Rice") >= 0) {
     var searchTerm = wineIngredients[aisleIngredients.indexOf("Pasta and Rice")].nameClean;
     console.log(searchTerm);
     fetch(
@@ -102,7 +118,7 @@ function checkMeat(food) {
       })
       .then((response) => {
 
-        if (typeof response.pairingText != "undefined") {
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
@@ -119,7 +135,7 @@ function checkMeat(food) {
       })
       .then((response) => {
 
-        if (typeof response.pairingText != "undefined") {
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
@@ -136,7 +152,7 @@ function checkMeat(food) {
       })
       .then((response) => {
 
-        if (typeof response.pairingText != "undefined") {
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
@@ -153,7 +169,7 @@ function checkMeat(food) {
       })
       .then((response) => {
 
-        if (typeof response.pairingText != "undefined") {
+        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
