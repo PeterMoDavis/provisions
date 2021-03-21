@@ -10,7 +10,7 @@ var playerBtn = document.querySelector("#playerButton");
 const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
-// var apiKey = peteKey2;
+var apiKey = peteKey;
 var bodyEl = document.querySelector(".body");
 
 // listens for submission on #ingredientBtn and adds it to list
@@ -20,7 +20,7 @@ ingredientBtn.addEventListener("click", function () {
   var listItem = document.createElement("li");
   listItem.innerHTML = ingredientInput.value;
   console.log(ingredientList);
-  ingredientList.append(listItem);
+  ingredientList.prepend(listItem);
   ingredientInput.value = "";
   console.log(ingredientString);
 });
@@ -29,6 +29,14 @@ ingredientBtn.addEventListener("click", function () {
 // listens for click on #recipeBtn
 recipeBtn.addEventListener("click", function () {
   console.log(ingredientString);
+  //==========================LOCAL STORAGE=====================
+  let ingredientsArray = JSON.parse(localStorage.getItem("ingredients")) || [];
+  ingredientsArray.push(ingredientString);
+  $("#dynamic-ingredient-list").prepend(
+    ingredientsArray[ingredientsArray.length - 1]
+  );
+  localStorage.setItem("ingredients", JSON.stringify(ingredientsArray));
+  //==========================LOCAL STORAGE=====================
   // calls the getEntrees function to search for recipes
   getEntrees();
   // this removes all child elements from the ingredient list
@@ -48,7 +56,7 @@ recipeBtn.addEventListener("click", function () {
 //Currently Jared's api key is in url. Jared did not make it into a variable
 function getEntrees() {
   fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=${peteKey2}`
+    `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=${apiKey}`
   )
     .then((blob) => {
       return blob.json();
@@ -70,7 +78,7 @@ function getEntrees() {
       }
       ulElement.on("click", liElement, function (e) {
         fetch(
-          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=${peteKey2}`
+          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=${apiKey}`
         )
           .then((blob) => {
             return blob.json();
@@ -80,7 +88,7 @@ function getEntrees() {
             var chosenRecipeId = response.results[0].id;
 
             fetch(
-              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=${peteKey2}`
+              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=${apiKey}`
             )
               .then((blob) => {
                 return blob.json();
@@ -127,7 +135,6 @@ playerBtn.addEventListener("click", function () {
   $(bodyEl).addClass("darkMode");
 });
 
-
 // // end #playerBtn listener
 
 // This function creates an <iframe> (and YouTube player)
@@ -151,3 +158,19 @@ function onYouTubeIframeAPIReady() {
   // end of player object
 }
 // end of onYouTubeIframeAPIReady function;
+
+//display local storage function
+
+function localStorageDisplay() {
+  if (localStorage.ingredients) {
+    let ingredientsArray = JSON.parse(localStorage.getItem("ingredients"));
+    ingredientsArray.splice(5);
+    for (let i = 0; i < ingredientsArray.length; i++) {
+      $("#dynamic-ingredient-list").append(
+        `<li>${ingredientsArray[i].replace(",", " & ").slice(0, -1)} 🍷</li>`
+      );
+    }
+  }
+}
+
+localStorageDisplay();
