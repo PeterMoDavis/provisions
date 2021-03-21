@@ -44,7 +44,7 @@ recipeBtn.addEventListener("click", function () {
 //Currently Jared's api key is in url. Jared did not make it into a variable
 function getEntrees() {
   fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=58056423ce894b8d8c39d6731fe48231`
+    `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=${peteKey2}`
   )
     .then((blob) => {
       return blob.json();
@@ -52,6 +52,9 @@ function getEntrees() {
     .then((response) => {
       // making variable for recipe array
       var recipes = response.results;
+      //emptying containers
+      ulElement.empty();
+      $("#dynamic-recipe-container").empty();
       //looping through recipe titles
       for (let i = 0; i < recipes.length; i++) {
         //create li
@@ -63,7 +66,7 @@ function getEntrees() {
       }
       ulElement.on("click", liElement, function (e) {
         fetch(
-          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=58056423ce894b8d8c39d6731fe48231`
+          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=${peteKey2}`
         )
           .then((blob) => {
             return blob.json();
@@ -73,7 +76,7 @@ function getEntrees() {
             var chosenRecipeId = response.results[0].id;
 
             fetch(
-              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=58056423ce894b8d8c39d6731fe48231`
+              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=${peteKey2}`
             )
               .then((blob) => {
                 return blob.json();
@@ -85,13 +88,16 @@ function getEntrees() {
                   let liElement = $(
                     `<li>${response.extendedIngredients[i].name}</li>`
                   );
+                  //turning off event listener
                   ulElement.off();
+
                   ulElement.append(liElement);
                 }
 
                 let h3Element = $(`<h3>${response.title}</h3>`);
                 let pElement = $(`<p>${response.instructions}</p>`);
                 let pElement2 = $(`<p>${response.winePairing.pairingText}</p>`);
+
                 $("#dynamic-recipe-container").append(
                   h3Element,
                   pElement,
