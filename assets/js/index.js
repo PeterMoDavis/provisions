@@ -11,6 +11,7 @@ const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
 // var apiKey = peteKey2;
+var bodyEl = document.querySelector(".body");
 
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
@@ -113,7 +114,11 @@ playerBtn.addEventListener("click", function () {
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  // Grabbing/setting body DOM element to dark mode.
+  $(bodyEl).addClass("darkMode");
 });
+
+
 // // end #playerBtn listener
 
 // This function creates an <iframe> (and YouTube player)
