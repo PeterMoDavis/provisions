@@ -10,22 +10,11 @@ var playerBtn = document.querySelector("#playerButton");
 const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
-turnoff-eventlistener
-const jaredKey = "dbe21eb86f054ecfbb133d89f134fb72";
-var apiKey = peteKey2;
-
 // var apiKey = peteKey2;
-
 
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
   console.log("click");
-  //local storage ================================================
-  console.log(ingredientInput.value);
-  let ingredientsArray = JSON.parse(localStorage.getItem("ingredients")) || [];
-  ingredientsArray.push(ingredientInput.value);
-  localStorage.setItem("ingredients", JSON.stringify(ingredientsArray));
-  //local storage ================================================
   ingredientString += ingredientInput.value + ",";
   var listItem = document.createElement("li");
   listItem.innerHTML = ingredientInput.value;
@@ -96,7 +85,6 @@ function getEntrees() {
                   let liElement = $(
                     `<li>${response.extendedIngredients[i].name}</li>`
                   );
-                  //turn off even listener
                   ulElement.off();
                   ulElement.append(liElement);
                 }
