@@ -6,5 +6,99 @@ li {
   transition: all 2s;
 }
 
+h3{
+  font-family: 'Parisienne', cursive;
+  text-decoration: underline;
+}
+
+
+#ingredients-list-container-jared{
+  text-align: center;
+  place-items: center;
+}
+
+
+#get-entree-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#ingredients-input-jared{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+input{
+  display:block;
+}
+
+
+#recipe-list-container-jared{
+  text-align: center;
+  place-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+.break{
+  padding:50px;
+}
+
+
+#dynamic-recipe-container{
+  padding-right: 30px;
+  padding-left: 30px;
+
+}
+
+.container{
+  box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, .2);
+  border-radius: 10px;
+}
+
+#header{
+  text-align: center;
+}
+
+#title{
+  font-size: 69px;
+  margin-bottom: 2px;
+}
+
+#subTitle{
+  font-size: 17px;
+}
+
+#title-card{
+  padding-right: 80px;
+  padding-left: 80px;
+}
+
+
+#youtubeContainer{
+  display:flex;
+  justify-content: center;
+
+}
+
+#videoContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#player{
+  border-radius: 10px;
+}
+
+
+
 /* menu background color */
 /* #f6ecc2 */

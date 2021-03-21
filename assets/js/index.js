@@ -10,8 +10,12 @@ var playerBtn = document.querySelector("#playerButton");
 const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
+turnoff-eventlistener
 const jaredKey = "dbe21eb86f054ecfbb133d89f134fb72";
 var apiKey = peteKey2;
+
+// var apiKey = peteKey2;
+
 
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
@@ -48,9 +52,10 @@ recipeBtn.addEventListener("click", function () {
   removeChildren(ingredientList);
 });
 
+//Currently Jared's api key is in url. Jared did not make it into a variable
 function getEntrees() {
   fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=${apiKey}`
+    `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=58056423ce894b8d8c39d6731fe48231`
   )
     .then((blob) => {
       return blob.json();
@@ -69,7 +74,7 @@ function getEntrees() {
       }
       ulElement.on("click", liElement, function (e) {
         fetch(
-          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=${apiKey}`
+          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=58056423ce894b8d8c39d6731fe48231`
         )
           .then((blob) => {
             return blob.json();
@@ -79,7 +84,7 @@ function getEntrees() {
             var chosenRecipeId = response.results[0].id;
 
             fetch(
-              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=${apiKey}`
+              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=58056423ce894b8d8c39d6731fe48231`
             )
               .then((blob) => {
                 return blob.json();
@@ -96,11 +101,11 @@ function getEntrees() {
                   ulElement.append(liElement);
                 }
 
-                let h1Element = $(`<h1>${response.title}</h1>`);
+                let h3Element = $(`<h3>${response.title}</h3>`);
                 let pElement = $(`<p>${response.instructions}</p>`);
                 let pElement2 = $(`<p>${response.winePairing.pairingText}</p>`);
                 $("#dynamic-recipe-container").append(
-                  h1Element,
+                  h3Element,
                   pElement,
                   pElement2
                 );
@@ -112,7 +117,7 @@ function getEntrees() {
   //==========================================================
 }
 
-// eventListener listens for a click on the #playerBtn
+// // eventListener listens for a click on the #playerBtn
 playerBtn.addEventListener("click", function () {
   // loads the IFrame Player API code asynchronously.
   var tag = document.createElement("script");
@@ -121,7 +126,7 @@ playerBtn.addEventListener("click", function () {
   var firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 });
-// end #playerBtn listener
+// // end #playerBtn listener
 
 // This function creates an <iframe> (and YouTube player)
 var player;
@@ -140,24 +145,7 @@ function onYouTubeIframeAPIReady() {
       rel: 0,
     },
   });
+
   // end of player object
 }
-// end of onYouTubeIframeAPIReady function
-//=========================================
-//   "https://api.spoonacular.com/food/wine/pairing?food=clam+chowder&apiKey=dbe21eb86f054ecfbb133d89f134fb72"
-// )
-//   .then((blob) => {
-//     return blob.json();
-//     console.log(blob);
-//   })
-//   .then((response) => {
-//     console.log(response)
-
-//     //Dynamically generating wine paring card
-//     //Pairing 1
-//     $("#pairing1-title1").html(response.pairedWines[0]);
-//     $("#pairing1-title2").html(response.pairedWines[1]);
-//     $("#pairing1-title3").html(response.pairedWines[2]);
-//     $("#pairing1-description").html(response.pairingText);
-
-//   });
+// end of onYouTubeIframeAPIReady function;
