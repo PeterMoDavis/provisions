@@ -15,71 +15,161 @@ const jKey2 = "687fd01456924118932a158740718f76";
 const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
-var apiKey = jKey;
+var apiKey = "b2556cac659e4b34af79c4e6807910d3"
 
 //checkCuisine first searches for the cuisine wine pairing and if it doesnt work it call the checkMeat function
 function checkCuisine(foodObject) {
-    // if it is undefined it first tries to search for a cuisine based wine pairing 
-    console.log("first check (cuisine) decided it was undefined " + winePair.innerHTML);
-    var response = foodObject;
-    if (response.cuisines.length > 0) {
-      var cuisine = response.cuisines[0];
-      console.log("cuisine = " + cuisine);
-      fetch(
-        `https://api.spoonacular.com/food/wine/pairing?food=${cuisine}&apiKey=${apiKey}`
-      )
-        .then((blob) => {
-          return blob.json();
-        })
-        .then((response) => {
-          console.log("heres the response from the cuisine search " + response.pairingText);
-          if (typeof response.pairingText != "undefined") {
-            console.log("the response was considered not undefined")
-            winePair.innerHTML = response.pairingText;
-          }
-          else {
-            checkMeat ();
-          }
-        })
-    } else {
-      checkMeat ();
-    }
+  // if it is undefined it first tries to search for a cuisine based wine pairing 
+  console.log("first check (cuisine) decided it was undefined " + winePair.innerHTML);
+  var cuisineObject = foodObject;
+  if (cuisineObject.cuisines.length > 0) {
+    var cuisine = cuisineObject.cuisines[0];
+    console.log("cuisine = " + cuisine);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${cuisine}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
+        console.log("heres the response from the cuisine search " + response.pairingText);
+        if (typeof response.pairingText != "undefined") {
+          console.log("the response was considered not undefined")
+          winePair.innerHTML = response.pairingText;
+        }
+        else {
+          checkMeat(cuisineObject);
+        }
+      })
+  } else {
+    console.log("there was no cuisine to check")
+    checkMeat(cuisineObject);
+  }
 
-    // end of cuisine check
+  // end of cuisine check
 
 }
 // end of checkCuisine function
 
 
- // checks for "frozenmeat" aisle ingredient and searches for a wine pairing
-function checkMeat () {
- if (aisleIngredients.indexOf("Frozen;Meat") >= 0) {
-   var searchTerm = wineIngredients[aisleIngredients.indexOf("Frozen;Meat")].nameClean;
-   console.log(searchTerm);
-   fetch(
-     `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
-   )
-     .then((blob) => {
-       return blob.json();
-     })
-     .then((response) => {
+// checks for "frozenmeat" aisle ingredient and searches for a wine pairing
+function checkMeat(food) {
+  var aisle = food;
+  console.log(aisle);
+  console.log(aisleIngredients);
+  if (aisleIngredients.indexOf("Frozen;Meat") >= 0) {
+    var searchTerm = wineIngredients[aisleIngredients.indexOf("Frozen;Meat")].nameClean;
+    console.log(searchTerm);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
 
-       if (typeof response.pairingText != "undefined") {
-         winePair.innerHTML = response.pairingText;
-       }else {
-         lastWine ();
-       }
-     })
- } else {
-   lastWine ();
- }
+        if (typeof response.pairingText != "undefined") {
+          winePair.innerHTML = response.pairingText;
+        } else {
+          lastWine();
+        }
+      })
+  } else if (aisleIngredients.indexOf("Meat") >= 0) {
+    var searchTerm = wineIngredients[aisleIngredients.indexOf("Meat")].nameClean;
+    console.log(searchTerm);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
+
+        if (typeof response.pairingText != "undefined") {
+          winePair.innerHTML = response.pairingText;
+        } else {
+          lastWine();
+        }
+      })
+  } else if (aisleIngredients.indexOf("Pasta and Rice") >= 0) {
+    var searchTerm = wineIngredients[aisleIngredients.indexOf("Pasta and Rice")].nameClean;
+    console.log(searchTerm);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
+
+        if (typeof response.pairingText != "undefined") {
+          winePair.innerHTML = response.pairingText;
+        } else {
+          lastWine();
+        }
+      })
+  } else if (aisleIngredients.indexOf("Cheese") >= 0) {
+    var searchTerm = wineIngredients[aisleIngredients.indexOf("Cheese")].nameClean;
+    console.log(searchTerm);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
+
+        if (typeof response.pairingText != "undefined") {
+          winePair.innerHTML = response.pairingText;
+        } else {
+          lastWine();
+        }
+      })
+  } else if (aisleIngredients.indexOf("Produce") >= 0) {
+    var searchTerm = wineIngredients[aisleIngredients.indexOf("Produce")].nameClean;
+    console.log(searchTerm);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
+
+        if (typeof response.pairingText != "undefined") {
+          winePair.innerHTML = response.pairingText;
+        } else {
+          lastWine();
+        }
+      })
+  } else if (aisleIngredients.indexOf("Nuts") >= 0) {
+    var searchTerm = wineIngredients[aisleIngredients.indexOf("Nuts")].nameClean;
+    console.log(searchTerm);
+    fetch(
+      `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
+    )
+      .then((blob) => {
+        return blob.json();
+      })
+      .then((response) => {
+
+        if (typeof response.pairingText != "undefined") {
+          winePair.innerHTML = response.pairingText;
+        } else {
+          lastWine();
+        }
+      })
+  }else {
+    lastWine ();
+  }
+  
 }
- // end of checkMeat
+// end of checkMeat
 
- function lastWine () {
+function lastWine() {
   winePair.innerHTML = "Our sommelier is unable to pair a wine with your selection. Please try again";
 
- }
+}
 
 
 
@@ -125,7 +215,7 @@ function getEntrees() {
 
       // making variable for recipe array
       var recipes = response.results;
-    
+
       //emptying containers
       ulElement.empty();
       $("#dynamic-recipe-container").empty();
@@ -175,10 +265,10 @@ function getEntrees() {
                 if (typeof response.pairingText != "undefined") {
                   winePair.innerHTML = response.pairingText;
                 } else {
-                  checkCuisine (response);
+                  checkCuisine(response);
                 }
 
-                
+
 
 
 
@@ -225,7 +315,7 @@ playerBtn.addEventListener("click", function () {
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   // Grabbing/adding darkMode class to body DOM element.
   $(bodyEl).addClass("darkMode");
-  if($(bodyEl).hasClass("lightMode") === true ){
+  if ($(bodyEl).hasClass("lightMode") === true) {
     $(bodyEl).removeClass("lightMode");
     $(bodyEl).addClass("darkMode");
   }
