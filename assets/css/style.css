@@ -1,4 +1,4 @@
-.darkMode{
+.darkMode {
   background-color: #060200;
   transition: all 2s;
 }
@@ -13,96 +13,84 @@
 }
 
 li {
-  transition: all 2s;
+  transition: all 5s;
 }
 
-h3{
-  font-family: 'Parisienne', cursive;
+h3 {
+  font-family: "Parisienne", cursive;
   text-decoration: underline;
 }
 
-
-#ingredients-list-container-jared{
+#ingredients-list-container-jared {
   text-align: center;
   place-items: center;
 }
 
-
-#get-entree-btn{
+#get-entree-btn {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
-#ingredients-input-jared{
+#ingredients-input-jared {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
-
-input{
-  display:block;
+input {
+  display: block;
 }
 
-
-#recipe-list-container-jared{
+#recipe-list-container-jared {
   text-align: center;
   place-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
-
 }
 
-.break{
-  padding:50px;
+.break {
+  padding: 50px;
 }
 
-
-#dynamic-recipe-container{
+#dynamic-recipe-container {
   padding-right: 30px;
   padding-left: 30px;
-
 }
 
-.container{
-  box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, .2);
+.container {
+  box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 }
 
-#header{
+#header {
   text-align: center;
 }
 
-#title{
+#title {
   font-size: 69px;
   margin-bottom: 2px;
 }
 
-#subTitle{
+#subTitle {
   font-size: 17px;
 }
 
-#title-card{
+#title-card {
   padding-right: 80px;
   padding-left: 80px;
 }
 
-
-#youtubeContainer{
-  display:flex;
+#youtubeContainer {
+  display: flex;
   justify-content: center;
-
 }
 
-#videoContainer{
+#videoContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 
 #lightsUp{
   display: flex;
@@ -110,12 +98,9 @@ input{
   align-items: center;
 }
 
-
 #player{
   border-radius: 10px;
 }
-
-
 
 /* menu background color */
 /* #f6ecc2 */
