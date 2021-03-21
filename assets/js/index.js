@@ -12,6 +12,7 @@ const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
 // var apiKey = peteKey2;
 var bodyEl = document.querySelector(".body");
+var lightsUpBtn = document.querySelector("#lightsUpBtn");
 
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
@@ -48,7 +49,7 @@ recipeBtn.addEventListener("click", function () {
 //Currently Jared's api key is in url. Jared did not make it into a variable
 function getEntrees() {
   fetch(
-    `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=${peteKey2}`
+    `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=d88d0fb8dd284cb08b7378846adb0bf0`
   )
     .then((blob) => {
       return blob.json();
@@ -70,7 +71,7 @@ function getEntrees() {
       }
       ulElement.on("click", liElement, function (e) {
         fetch(
-          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=${peteKey2}`
+          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=d88d0fb8dd284cb08b7378846adb0bf0`
         )
           .then((blob) => {
             return blob.json();
@@ -80,7 +81,7 @@ function getEntrees() {
             var chosenRecipeId = response.results[0].id;
 
             fetch(
-              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=${peteKey2}`
+              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=d88d0fb8dd284cb08b7378846adb0bf0`
             )
               .then((blob) => {
                 return blob.json();
@@ -123,9 +124,18 @@ playerBtn.addEventListener("click", function () {
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  // Grabbing/setting body DOM element to dark mode.
+  // Grabbing/adding darkMode class to body DOM element.
   $(bodyEl).addClass("darkMode");
 });
+
+
+// Lights Up Event Listner
+lightsUpBtn.addEventListener("click", function () {
+  // Grabbing/adding darkMode class to body DOM element.
+  $(bodyEl).addClass("lightMode");
+});
+
+
 
 
 // // end #playerBtn listener
