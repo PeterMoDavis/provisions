@@ -106,5 +106,7 @@ input {
   border-radius: 10px;
 }
 
-/* menu background color */
-/* #f6ecc2 */
+.wine-list-container{
+  padding-right: 50px;
+  padding-left: 50px;
+}
