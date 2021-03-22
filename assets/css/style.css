@@ -42,6 +42,12 @@ input {
   display: block;
 }
 
+
+#recipeList{
+  text-align: center;
+  place-items: center;
+}
+
 #recipe-list-container-jared {
   text-align: center;
   place-items: center;
@@ -52,6 +58,8 @@ input {
 .break {
   padding: 50px;
 }
+
+
 
 #dynamic-recipe-container {
   padding-right: 30px;
@@ -100,6 +108,12 @@ input {
 
 #player{
   border-radius: 10px;
+}
+
+
+.wine-list-container{
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 /* menu background color */
