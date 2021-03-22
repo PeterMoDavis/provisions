@@ -2,11 +2,11 @@
 
 ## Description
 
-Provisions is an application that generates meal and wine pairings inspired by ingredients, one’s provisions, inputted by the user. Who knew one day as a result of a deadly global pandemic, we’d take for granted the simple pleasure of dining out? Prosions is inspired by enjoying a meal anywhere other than your own home and making the best out of a 2020/2021-situation.
+**Provisions** is an application that generates entreé and wine pairings inspired by ingredients, one’s provisions, inputted by the user. Who knew one day as a result of a deadly global pandemic, we’d take for granted the simple pleasure of dining out? **Provisions** is inspired by enjoying a meal anywhere other than your own home and making the best out of a 2020/2021-situation.
 
-## Deplyment
-[Deployed Site](https://petermodavis.github.io/provisions/)
-[GitHub Repo](https://github.com/PeterMoDavis/provisions)
+## Deployment
+- [Deployed Site](https://petermodavis.github.io/provisions/)
+- [GitHub Repo](https://github.com/PeterMoDavis/provisions)
 
 
 ![Landing page.](assets/images/screenshot1.png)
