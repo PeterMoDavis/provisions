@@ -269,6 +269,7 @@ function localStorageDisplay() {
       $("#dynamic-ingredient-list").append(
         `<li>${ingredientsArray[i].replace(/,/g, " & ").slice(0, -1)} 🍷</li>`
       );
+      $("#dynamic-ingredient-list").attr("class", "clickable");
     }
     $("#dynamic-ingredient-list").on("click", "li", function (e) {
       let chosenItem = e.target.textContent.replace(/ & /g, ", ").slice(0, -2);
@@ -300,6 +301,8 @@ function getEntrees() {
       for (let i = 0; i < recipes.length; i++) {
         //create li
         var liElement = $(`<li>${recipes[i].title}</li>`);
+        //create class for hand pointer
+        liElement.attr("class", "clickable");
         //append li to ul
         ulElement.append(liElement);
         //add even listeners to ul and lis
