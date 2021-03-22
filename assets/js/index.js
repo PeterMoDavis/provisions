@@ -17,12 +17,14 @@ const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
 
-var apiKey = peteKey;
+var apiKey = peteKey2;
 
 //checkCuisine first searches for the cuisine wine pairing and if it doesnt work it call the checkMeat function
 function checkCuisine(foodObject) {
-  // if it is undefined it first tries to search for a cuisine based wine pairing 
-  console.log("first check (cuisine) decided it was undefined " + winePair.innerHTML);
+  // if it is undefined it first tries to search for a cuisine based wine pairing
+  console.log(
+    "first check (cuisine) decided it was undefined " + winePair.innerHTML
+  );
   var cuisineObject = foodObject;
   if (cuisineObject.cuisines.length > 0) {
     var cuisine = cuisineObject.cuisines[0];
@@ -34,24 +36,26 @@ function checkCuisine(foodObject) {
         return blob.json();
       })
       .then((response) => {
-        console.log("heres the response from the cuisine search " + response.pairingText);
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+        console.log(
+          "heres the response from the cuisine search " + response.pairingText
+        );
+        if (
+          typeof response.pairingText != "undefined" &&
+          response.pairingText != ""
+        ) {
           winePair.innerHTML = response.pairingText;
-        }
-        else {
+        } else {
           checkMeat(cuisineObject);
         }
-      })
+      });
   } else {
-    console.log("there was no cuisine to check")
+    console.log("there was no cuisine to check");
     checkMeat(cuisineObject);
   }
 
   // end of cuisine check
-
 }
 // end of checkCuisine function
-
 
 // checks for "frozenmeat" aisle ingredient and searches for a wine pairing
 function checkMeat(food) {
@@ -59,7 +63,8 @@ function checkMeat(food) {
   console.log(aisle);
   console.log(aisleIngredients);
   if (aisleIngredients.indexOf("Seafood") >= 0) {
-    var searchTerm = wineIngredients[aisleIngredients.indexOf("Seafood")].nameClean;
+    var searchTerm =
+      wineIngredients[aisleIngredients.indexOf("Seafood")].nameClean;
     console.log(searchTerm);
     fetch(
       `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
@@ -68,15 +73,18 @@ function checkMeat(food) {
         return blob.json();
       })
       .then((response) => {
-
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+        if (
+          typeof response.pairingText != "undefined" &&
+          response.pairingText != ""
+        ) {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
         }
-      })
+      });
   } else if (aisleIngredients.indexOf("Frozen;Meat") >= 0) {
-    var searchTerm = wineIngredients[aisleIngredients.indexOf("Frozen;Meat")].nameClean;
+    var searchTerm =
+      wineIngredients[aisleIngredients.indexOf("Frozen;Meat")].nameClean;
     console.log(searchTerm);
     fetch(
       `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
@@ -85,15 +93,18 @@ function checkMeat(food) {
         return blob.json();
       })
       .then((response) => {
-
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+        if (
+          typeof response.pairingText != "undefined" &&
+          response.pairingText != ""
+        ) {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
         }
-      })
+      });
   } else if (aisleIngredients.indexOf("Meat") >= 0) {
-    var searchTerm = wineIngredients[aisleIngredients.indexOf("Meat")].nameClean;
+    var searchTerm =
+      wineIngredients[aisleIngredients.indexOf("Meat")].nameClean;
     console.log(searchTerm);
     fetch(
       `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
@@ -102,15 +113,18 @@ function checkMeat(food) {
         return blob.json();
       })
       .then((response) => {
-
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+        if (
+          typeof response.pairingText != "undefined" &&
+          response.pairingText != ""
+        ) {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
         }
-      })
+      });
   } else if (aisleIngredients.indexOf("Pasta and Rice") >= 0) {
-    var searchTerm = wineIngredients[aisleIngredients.indexOf("Pasta and Rice")].nameClean;
+    var searchTerm =
+      wineIngredients[aisleIngredients.indexOf("Pasta and Rice")].nameClean;
     console.log(searchTerm);
     fetch(
       `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
@@ -119,15 +133,18 @@ function checkMeat(food) {
         return blob.json();
       })
       .then((response) => {
-
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+        if (
+          typeof response.pairingText != "undefined" &&
+          response.pairingText != ""
+        ) {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
         }
-      })
+      });
   } else if (aisleIngredients.indexOf("Cheese") >= 0) {
-    var searchTerm = wineIngredients[aisleIngredients.indexOf("Cheese")].nameClean;
+    var searchTerm =
+      wineIngredients[aisleIngredients.indexOf("Cheese")].nameClean;
     console.log(searchTerm);
     fetch(
       `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
@@ -136,15 +153,18 @@ function checkMeat(food) {
         return blob.json();
       })
       .then((response) => {
-
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+        if (
+          typeof response.pairingText != "undefined" &&
+          response.pairingText != ""
+        ) {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
         }
-      })
+      });
   } else if (aisleIngredients.indexOf("Produce") >= 0) {
-    var searchTerm = wineIngredients[aisleIngredients.indexOf("Produce")].nameClean;
+    var searchTerm =
+      wineIngredients[aisleIngredients.indexOf("Produce")].nameClean;
     console.log(searchTerm);
     fetch(
       `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
@@ -153,15 +173,18 @@ function checkMeat(food) {
         return blob.json();
       })
       .then((response) => {
-
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+        if (
+          typeof response.pairingText != "undefined" &&
+          response.pairingText != ""
+        ) {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
         }
-      })
+      });
   } else if (aisleIngredients.indexOf("Nuts") >= 0) {
-    var searchTerm = wineIngredients[aisleIngredients.indexOf("Nuts")].nameClean;
+    var searchTerm =
+      wineIngredients[aisleIngredients.indexOf("Nuts")].nameClean;
     console.log(searchTerm);
     fetch(
       `https://api.spoonacular.com/food/wine/pairing?food=${searchTerm}&apiKey=${apiKey}`
@@ -170,25 +193,25 @@ function checkMeat(food) {
         return blob.json();
       })
       .then((response) => {
-
-        if (typeof response.pairingText != "undefined" && response.pairingText != "") {
+        if (
+          typeof response.pairingText != "undefined" &&
+          response.pairingText != ""
+        ) {
           winePair.innerHTML = response.pairingText;
         } else {
           lastWine();
         }
-      })
+      });
   } else {
     lastWine();
   }
-
 }
 // end of checkMeat
 
 function lastWine() {
-  winePair.innerHTML = "Our sommelier is unable to pair a wine with your selection. Please try again";
-
+  winePair.innerHTML =
+    "Our sommelier is unable to pair a wine with your selection. Please try again";
 }
-
 
 // listens for submission on #ingredientBtn and adds it to list
 ingredientBtn.addEventListener("click", function () {
@@ -232,6 +255,31 @@ recipeBtn.addEventListener("click", function () {
   ingredientString = "";
 });
 
+//display local storage function
+
+function localStorageDisplay() {
+  if (localStorage.ingredients) {
+    //get ingredients from storage
+    let ingredientsArray = JSON.parse(localStorage.getItem("ingredients"));
+    //cut ingredients array down to 5
+    ingredientsArray.splice(6);
+    //loop through ingredients array
+    for (let i = 0; i < ingredientsArray.length; i++) {
+      //append to list container replacing the commas for & slicing off the end commas and adding the illustrious wine emoji.
+      $("#dynamic-ingredient-list").append(
+        `<li>${ingredientsArray[i].replace(/,/g, " & ").slice(0, -1)} 🍷</li>`
+      );
+    }
+    $("#dynamic-ingredient-list").on("click", "li", function (e) {
+      let chosenItem = e.target.textContent.replace(/ & /g, ", ").slice(0, -2);
+      ingredientString = chosenItem;
+      getEntrees();
+    });
+  }
+}
+
+localStorageDisplay();
+
 //Currently Jared's api key is in url. Jared did not make it into a variable
 function getEntrees() {
   fetch(
@@ -241,7 +289,6 @@ function getEntrees() {
       return blob.json();
     })
     .then((response) => {
-
       // making variable for recipe array
       var recipes = response.results;
 
@@ -265,7 +312,6 @@ function getEntrees() {
             return blob.json();
           })
           .then((response) => {
-
             var chosenRecipeId = response.results[0].id;
 
             fetch(
@@ -281,9 +327,7 @@ function getEntrees() {
                   // this puts the name of the aisle from each ingredient object into an array that we will use to determine wine \
                   aisleIngredients[i] = wineIngredients[i].aisle;
 
-                  let liElement = $(
-                    `<li>${wineIngredients[i].name}</li>`
-                  );
+                  let liElement = $(`<li>${wineIngredients[i].name}</li>`);
                   //turning off event listener
                   ulElement.off();
 
@@ -297,35 +341,10 @@ function getEntrees() {
                   checkCuisine(response);
                 }
 
-
-
-
-
-
-
                 let h3Element = $(`<h3>${response.title}</h3>`);
                 let pElement = $(`<p>${response.instructions}</p>`);
 
-                $("#dynamic-recipe-container").append(
-                  h3Element,
-                  pElement,
-                );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                $("#dynamic-recipe-container").append(h3Element, pElement);
               });
           });
       });
@@ -352,14 +371,11 @@ playerBtn.addEventListener("click", function () {
 
 // // end #playerBtn listener
 
-
-
 // Lights Up Event Listner
 lightsUpBtn.addEventListener("click", function () {
   // Grabbing/adding darkMode class to body DOM element.
   $(bodyEl).addClass("lightMode");
 });
-
 
 // This function creates an <iframe> (and YouTube player)
 var player;
@@ -382,23 +398,3 @@ function onYouTubeIframeAPIReady() {
   // end of player object
 }
 // end of onYouTubeIframeAPIReady function;
-
-//display local storage function
-
-function localStorageDisplay() {
-  if (localStorage.ingredients) {
-    //get ingredients from storage
-    let ingredientsArray = JSON.parse(localStorage.getItem("ingredients"));
-    //cut ingredients array down to 5
-    ingredientsArray.splice(6);
-    //loop through ingredients array
-    for (let i = 0; i < ingredientsArray.length; i++) {
-      //append to list container replacing the commas for & slicing off the end commas and adding the illustrious wine emoji.
-      $("#dynamic-ingredient-list").append(
-        `<li>${ingredientsArray[i].replace(",", " & ").slice(0, -1)} 🍷</li>`
-      );
-    }
-  }
-}
-
-localStorageDisplay();
