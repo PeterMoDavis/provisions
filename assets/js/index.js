@@ -299,7 +299,7 @@ function getEntrees() {
         // making variable for recipe array
         var recipes = response.results;
 
-        //emptying containers
+        //emptying containers that hold things
         ulElement.empty();
         $("#dynamic-recipe-container").empty();
 
