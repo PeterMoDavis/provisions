@@ -17,7 +17,7 @@ const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
 
-var apiKey = peteKey2;
+var apiKey = jKey2;
 
 //checkCuisine first searches for the cuisine wine pairing and if it doesnt work it call the checkMeat function
 function checkCuisine(foodObject) {
@@ -290,71 +290,82 @@ function getEntrees() {
       return blob.json();
     })
     .then((response) => {
-      // making variable for recipe array
-      var recipes = response.results;
+      console.log(response);
+      if (response.results.length === 0) {
+        $("#dynamic-ingredient-list").empty();
+        let pElement = $("p").text(
+          "We are sorry we could not find you a recipe"
+        );
+        console.log(pElement.text());
+        let sadClown = $("<img src='../assets/images/sadclown.jpg'>");
+        $("#dynamic-ingredient-list").append(pElement, sadClown);
+      } else {
+        // making variable for recipe array
+        var recipes = response.results;
 
-      //emptying containers
-      ulElement.empty();
-      $("#dynamic-recipe-container").empty();
+        //emptying containers
+        ulElement.empty();
+        $("#dynamic-recipe-container").empty();
 
-      //looping through recipe titles
-      for (let i = 0; i < recipes.length; i++) {
-        //create li
-        var liElement = $(`<li>${recipes[i].title}</li>`);
-        //create class for hand pointer
-        liElement.attr("class", "clickable");
-        //append li to ul
-        ulElement.append(liElement);
-        //add even listeners to ul and lis
+        //looping through recipe titles
+        for (let i = 0; i < recipes.length; i++) {
+          //create li
+          var liElement = $(`<li>${recipes[i].title}</li>`);
+          //create class for hand pointer
+          liElement.attr("class", "clickable");
+          //append li to ul
+          ulElement.append(liElement);
+          //add even listeners to ul and lis
+        }
+        ulElement.on("click", liElement, function (e) {
+          fetch(
+            `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=${apiKey}`
+          )
+            .then((blob) => {
+              return blob.json();
+            })
+            .then((response) => {
+              var chosenRecipeId = response.results[0].id;
+
+              fetch(
+                `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=${apiKey}`
+              )
+                .then((blob) => {
+                  return blob.json();
+                })
+                .then((response) => {
+                  ulElement.empty();
+                  wineIngredients = response.extendedIngredients;
+                  for (let i = 0; i < wineIngredients.length; i++) {
+                    // this puts the name of the aisle from each ingredient object into an array that we will use to determine wine \
+                    aisleIngredients[i] = wineIngredients[i].aisle;
+
+                    let liElement = $(`<li>${wineIngredients[i].name}</li>`);
+                    //turning off event listener
+                    ulElement.off();
+
+                    ulElement.append(liElement);
+                  }
+
+                  // puts the recipe's wine pairing text into var winePairText to check for "undefined"
+                  if (typeof response.pairingText != "undefined") {
+                    winePair.innerHTML = response.pairingText;
+                  } else {
+                    checkCuisine(response);
+                  }
+
+                  let h3Element = $(`<h3>${response.title}</h3>`);
+                  let pElement = $(`<p>${response.instructions}</p>`);
+
+                  $("#dynamic-recipe-container").append(h3Element, pElement);
+                });
+            });
+        });
       }
-      ulElement.on("click", liElement, function (e) {
-        fetch(
-          `https://api.spoonacular.com/recipes/complexSearch?query=${e.target.textContent}&apiKey=${apiKey}`
-        )
-          .then((blob) => {
-            return blob.json();
-          })
-          .then((response) => {
-            var chosenRecipeId = response.results[0].id;
-
-            fetch(
-              `https://api.spoonacular.com/recipes/${chosenRecipeId}/information/?apiKey=${apiKey}`
-            )
-              .then((blob) => {
-                return blob.json();
-              })
-              .then((response) => {
-                ulElement.empty();
-                wineIngredients = response.extendedIngredients;
-                for (let i = 0; i < wineIngredients.length; i++) {
-                  // this puts the name of the aisle from each ingredient object into an array that we will use to determine wine \
-                  aisleIngredients[i] = wineIngredients[i].aisle;
-
-                  let liElement = $(`<li>${wineIngredients[i].name}</li>`);
-                  //turning off event listener
-                  ulElement.off();
-
-                  ulElement.append(liElement);
-                }
-
-                // puts the recipe's wine pairing text into var winePairText to check for "undefined"
-                if (typeof response.pairingText != "undefined") {
-                  winePair.innerHTML = response.pairingText;
-                } else {
-                  checkCuisine(response);
-                }
-
-                let h3Element = $(`<h3>${response.title}</h3>`);
-                let pElement = $(`<p>${response.instructions}</p>`);
-
-                $("#dynamic-recipe-container").append(h3Element, pElement);
-              });
-          });
-      });
     });
-
-  //==========================================================
 }
+
+//==========================================================
 
 // // eventListener listens for a click on the #playerBtn
 playerBtn.addEventListener("click", function () {

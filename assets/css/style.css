@@ -57,6 +57,12 @@ input {
   padding: 50px;
 }
 
+img {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+}
+
 #dynamic-recipe-container {
   padding-right: 30px;
   padding-left: 30px;
