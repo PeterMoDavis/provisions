@@ -293,12 +293,8 @@ function getEntrees() {
       console.log(response);
       if (response.results.length === 0) {
         $("#dynamic-ingredient-list").empty();
-        let pElement = $("p").text(
-          "We are sorry we could not find you a recipe"
-        );
-        console.log(pElement.text());
         let sadClown = $("<img src='../assets/images/sadclown.jpg'>");
-        $("#dynamic-ingredient-list").append(pElement, sadClown);
+        $("#dynamic-ingredient-list").append(sadClown);
       } else {
         // making variable for recipe array
         var recipes = response.results;
