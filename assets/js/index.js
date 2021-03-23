@@ -17,7 +17,8 @@ const jKey = "e5c67ec0126745b8b0354ae98fcaed4d";
 const peteKey = "9175773144fc417eb84578b92bed4dd9";
 const peteKey2 = "50da326f05fc433585a10d5614cc25de";
 
-var apiKey = peteKey2;
+var apiKey = jKey;
+
 
 //checkCuisine first searches for the cuisine wine pairing and if it doesnt work it call the checkMeat function
 function checkCuisine(foodObject) {
