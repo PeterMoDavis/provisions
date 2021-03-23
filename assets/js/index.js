@@ -19,6 +19,7 @@ const peteKey2 = "50da326f05fc433585a10d5614cc25de";
 
 var apiKey = jKey;
 
+
 //checkCuisine first searches for the cuisine wine pairing and if it doesnt work it call the checkMeat function
 function checkCuisine(foodObject) {
   // if it is undefined it first tries to search for a cuisine based wine pairing
@@ -293,7 +294,7 @@ function getEntrees() {
       console.log(response);
       if (response.results.length === 0) {
         $("#dynamic-ingredient-list").empty();
-        let sadClown = $("<img src='../assets/images/sadclown.jpg'>");
+        let sadClown = $("<img src='./assets/images/sadclown.jpg'>");
         $("#dynamic-ingredient-list").append(sadClown);
       } else {
         // making variable for recipe array
