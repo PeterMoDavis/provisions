@@ -5,7 +5,6 @@ var bodyEl = document.querySelector(".body");
 var winePair = document.querySelector("#winePair");
 winePair.innerHTML = "";
 var ulElement = $("#recipeList");
-var ingredientString = "";
 var recipeBtn = document.querySelector("#recipeButton");
 var playerBtn = document.querySelector("#playerButton");
 var bodyEl = document.querySelector(".body");
@@ -19,8 +18,15 @@ const peteKey2 = "50da326f05fc433585a10d5614cc25de";
 
 var apiKey = jKey2;
 
-//checkCuisine first searches for the cuisine wine pairing and if it doesnt work it call the checkMeat function
-function checkCuisine(foodObject) {
+function init () {
+  selectEntree();
+  localStorageDisplay();
+}
+
+init();
+
+//checkCuisine first searches for the cuisine wine pairing and if it doesn't work it call the checkMeat function
+checkCuisine = foodObject => {
   // if it is undefined it first tries to search for a cuisine based wine pairing
   console.log(
     "first check (cuisine) decided it was undefined " + winePair.innerHTML
@@ -213,49 +219,44 @@ function lastWine() {
     "Our sommelier is unable to pair a wine with your selection. Please try again";
 }
 
-// listens for submission on #ingredientBtn and adds it to list
-ingredientBtn.addEventListener("click", function () {
-  ingredientString += ingredientInput.value + ",";
-  var listItem = document.createElement("li");
-  listItem.innerHTML = ingredientInput.value;
+// TODO create a catch for if user enters multiple ingredients
+// listens for submission on #ingredientBtn and adds it to a string to query the spoonacular API 
+function selectEntree () {
+  let ingredientString = "";
 
-  console.log(ingredientList);
-  //changed the append to prepend
-  ingredientList.prepend(listItem);
-  ingredientInput.value = "";
-});
-// end #ingredientBtn eventListener
+  // ingrdientBtn listener waits for a click and then grabs the user input from the ingredient field
+  ingredientBtn.addEventListener("click", function () {
 
-// listens for click on #recipeBtn
-recipeBtn.addEventListener("click", function () {
-  console.log(ingredientString);
-  //==========================LOCAL STORAGE=====================
-  let ingredientsArray = JSON.parse(localStorage.getItem("ingredients")) || [];
-  //add element to the top of the array
-  ingredientsArray.unshift(ingredientString);
-  //prepend to the ingredients list
-  $("#dynamic-ingredient-list").prepend(
-    ingredientsArray[ingredientsArray.length - 1]
-  );
-  localStorage.setItem("ingredients", JSON.stringify(ingredientsArray));
-  //==========================LOCAL STORAGE=====================
-  // calls the getEntrees function to search for recipes
-  getEntrees();
-  // this removes all child elements from the ingredient list
-  const removeChildren = (parent) => {
-    while (parent.lastChild) {
-      parent.removeChild(parent.lastChild);
-    }
-  };
-  // end #recipeBtn listener
+    // adds the user ingredient input to a concatinated string 
+    ingredientString += ingredientInput.value + ",";
+    let listItem = document.createElement("li");
+    listItem.innerHTML = ingredientInput.value;
+    // adds the ingredient to the HTML list
+    ingredientList.insertBefore(listItem, ingredientList.firstChild)
+  });
+  // end #ingredientBtn eventListener
 
-  // remove all child nodes
-  removeChildren(ingredientList);
-  //clear ingredient string
-  ingredientString = "";
-});
+  // listens for click on #recipeBtn
+  recipeBtn.addEventListener("click", function () {
 
-//display local storage function
+    //==========================LOCAL STORAGE=====================
+    let ingredientsArray = JSON.parse(localStorage.getItem("ingredients")) || [];
+    //add element to the top of the array
+    ingredientsArray.unshift(ingredientString);
+    //prepend to the ingredients list
+    $("#dynamic-ingredient-list").prepend(
+      ingredientsArray[ingredientsArray.length - 1]
+    );
+    localStorage.setItem("ingredients", JSON.stringify(ingredientsArray));
+    //==========================LOCAL STORAGE=====================
+    // calls the getEntrees function to search for recipes
+    getEntrees(ingredientString);
+    // remove all child nodes
+    removeChildren(ingredientList);
+  });
+  // end recipeBtn listener
+}
+// end selectEntree function
 
 function localStorageDisplay() {
   if (localStorage.ingredients) {
@@ -266,23 +267,25 @@ function localStorageDisplay() {
     //loop through ingredients array
     for (let i = 0; i < ingredientsArray.length; i++) {
       //append to list container replacing the commas for & slicing off the end commas and adding the illustrious wine emoji.
-      $("#dynamic-ingredient-list").append(
+      $("#previousIngredients-list").append(
         `<li>${ingredientsArray[i].replace(/,/g, " & ").slice(0, -1)} 🍷</li>`
       );
-      $("#dynamic-ingredient-list").attr("class", "clickable");
+      $("#previousIngredients-list").attr("class", "clickable");
     }
-    $("#dynamic-ingredient-list").on("click", "li", function (e) {
+    $("#previousIngredients-list").on("click", "li", function (e) {
       let chosenItem = e.target.textContent.replace(/ & /g, ", ").slice(0, -2);
-      ingredientString = chosenItem;
-      getEntrees();
+      let ingredientString = chosenItem;
+      getEntrees(ingredientString);
     });
   }
 }
+// end localStorageDisplay function
 
-localStorageDisplay();
 
-//Currently Jared's api key is in url. Jared did not make it into a variable
-function getEntrees() {
+
+// getEntrees takes the ingredientsList string and searches spoonacular API for recipe objects
+// it lists the results of the search and the user picks one
+getEntrees = (ingredientString) => {
   fetch(
     `https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${ingredientString}&apiKey=${apiKey}`
   )
@@ -293,7 +296,7 @@ function getEntrees() {
       console.log(response);
       if (response.results.length === 0) {
         $("#dynamic-ingredient-list").empty();
-        let sadClown = $("<img src='../assets/images/sadclown.jpg'>");
+        let sadClown = $("<img src='./assets/images/sadclown.jpg'>");
         $("#dynamic-ingredient-list").append(sadClown);
       } else {
         // making variable for recipe array
@@ -408,3 +411,13 @@ function onYouTubeIframeAPIReady() {
   // end of player object
 }
 // end of onYouTubeIframeAPIReady function;
+
+// removeChildren function removes list Html items
+// parent is the parent html container
+removeChildren = (parent) => {
+  while (parent.lastChild) {
+    parent.removeChild(parent.lastChild);
+  }
+  // end while loop
+}
+// end removeChildren function

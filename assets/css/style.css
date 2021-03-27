@@ -16,23 +16,23 @@ li {
   transition: all 5s;
 }
 
-h3 {
+h3, h5 {
   font-family: "Parisienne", cursive;
   text-decoration: underline;
 }
 
-#ingredients-list-container-jared {
+#ingredients-list-container-jared, #previousIngredients-list {
   text-align: center;
   place-items: center;
 }
 
-#get-entree-btn {
+/* #get-entree-btn {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-#ingredients-input-jared {
+#ingredients-input-jared, #get-entree-btn {
   display: flex;
   justify-content: center;
   align-items: center;
