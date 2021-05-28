@@ -4,10 +4,6 @@
 
 **Provisions** is an application that generates entreé and wine pairings inspired by ingredients, one’s provisions, inputted by the user. Who knew one day as a result of a deadly global pandemic, we’d take for granted the simple pleasure of dining out? **Provisions** is inspired by enjoying a meal anywhere other than your own home and making the best out of a 2020/2021-situation.
 
-## Deployment
-- [Deployed Site](https://petermodavis.github.io/provisions/)
-- [GitHub Repo](https://github.com/PeterMoDavis/provisions)
-
 
 ![Landing page.](assets/images/screenshot1.png)
 ![Landing page.](assets/images/screenshot2.png)
@@ -31,4 +27,16 @@
 - Youtube api technologies
 
 ### Credits
-All the support that made this project possible.
+Original App:
+ J Brennan https://github.com/legit-jb
+ Jared de Uriarte https://github.com/jareddeuriarte
+ Peter MoDavis https://github.com/PeterMoDavis
+ 
+Refactored by:
+  J Brennan
+
+## Deployed Site
+https://github.com/legit-jb
+
+## Github Site
+https://github.com/legit-jb/provisions
