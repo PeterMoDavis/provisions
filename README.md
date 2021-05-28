@@ -28,9 +28,9 @@
 
 ### Credits
 Original App:
- J Brennan https://github.com/legit-jb
- Jared de Uriarte https://github.com/jareddeuriarte
- Peter MoDavis https://github.com/PeterMoDavis
+ - J Brennan https://github.com/legit-jb
+ - Jared de Uriarte https://github.com/jareddeuriarte
+ - Peter MoDavis https://github.com/PeterMoDavis
  
 Refactored by:
   J Brennan
