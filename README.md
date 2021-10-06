@@ -36,7 +36,7 @@ Refactored by:
  J Brennan
 
 ## Deployed Site
-https://legit-jb.github.io/dayScheduler
+https://legit-jb.github.io/provisions/
 
 ## Github Site
-https://github.com/legit-jb/dayScheduler
+https://github.com/legit-jb/provisions
