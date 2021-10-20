@@ -14,7 +14,7 @@
 
 
 ## Usage
-- Enter 2 ingredients to your ingredients list on at a time by clicking add. 
+- Enter at least two ingredients to your ingredients list on at a time by clicking add. 
 - Click 'Get Entreé' to generate recipe recommendations and wine pairings.
 - Turn the lights down and set the fire to enjoy your provisions by clicking 'Lights Down, Fire Set'.
 
